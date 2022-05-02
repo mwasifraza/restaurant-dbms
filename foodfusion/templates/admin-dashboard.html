@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}
+    FOOD FUSION | Admin Dashboard
+{% endblock %}
+
+{% block content %}
+<style>
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+</style>
+<section>
+    <div class="container">
+        <div class="user">
+            <div class="col-md-10 mx-auto mt-5">
+                <h2>Users Data</h2>
+                <table class="table table-hover table-dark">
+                    <thead>
+                        <tr>
+                            <!-- <th scope="col">ID</th> -->
+                            <th scope="col">NAME</th>
+                            <th scope="col">USERNAME</th>
+                            <th scope="col">EMAIL</th>
+                            <th scope="col">MOBILE</th>
+                            <!-- <th scope="col">GENDER</th> -->
+                            <th scope="col">CREATED</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if users %}
+                        {% for user in users %}
+                        <tr>
+                            <!-- <td>{{ user.id }}</td> -->
+                            <td>{{ user.fname }} {{ user.lname }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.mobile }}</td>
+                            <!-- <td>{{ user.gender }}</td> -->
+                            <td>{{ user.created_at }}</td>
+                            <td><a href="{{ url_for('delete_user', uid=user.id) }}" class="btn btn-danger btn-sm">
+                                Delete
+                            </a></td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                <h2 class="text-muted">There is No Data to Show</h2>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

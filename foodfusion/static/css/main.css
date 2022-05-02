@@ -1,0 +1,214 @@
+
+body{
+    /* font-family: 'Raleway', sans-serif; */
+    background: #fafafa !important;
+    /* color: #fff !important; */
+    min-height: 100vh !important;
+}
+hr{
+    border-bottom: 1px solid rgba(204,204,204,0.3) !important;
+}
+.us-none{ user-select: none; }
+
+.ud-none{ -webkit-user-drag: none; }
+
+.center{ text-align: center; }
+
+.mt20{ margin-top: 20px; }
+
+.mb20{ margin-bottom: 20px; }
+
+.ml20{ margin-left: 20px; }
+
+.mr20{ margin-right: 20px; }
+
+.btn-facebook{
+    background-color: #4267B2 !important;
+    color: #fff !important;
+}
+.alert{
+    margin-bottom: 20px !important;
+}
+form.mg-zero input,
+form.mg-zero select{
+    margin: 0;
+}
+form select:focus,
+form input:focus{
+    box-shadow: none !important;
+    border-color: #888 !important;
+}
+form input,
+form select{
+    margin: 15px 0;
+}
+
+
+/******** HEADER *********/
+.navbar{
+    background: rgb(254,254,254);
+    height: 70px;
+    box-shadow: 0 1px 15px 1px rgba(0,0,0,0.1);
+    /* transition: 300ms; */
+}
+.navbar .navbar-nav > li > a{
+    color: #000 !important;
+    font-size: 18px;
+}
+.navbar .navbar-brand{
+    color: #f3c40e !important;
+    font-size: 26px;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    /* background-color: #be242b; */
+}
+
+
+/*********** HOMEPAGE ***********/
+.cart-button{
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    /* overflow: hidden; */
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 9999;
+}
+.cart-button a{
+    display: block;
+    font-size: 24px;
+    color: #fff;
+    border-radius: 50%;
+    background-color: #f3c40e;
+    transition: 200ms;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.1);
+}
+.cart-button a:hover{
+    color: #fff;
+    background-color: #e9bc0f;
+}
+.cart-button .badge{
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    padding: 6px 8px;
+    font-size: 14px;
+}
+.main-heading{
+    /* background-color: #aaa; */
+    text-transform: uppercase;
+}
+.main-heading .separator-main-heading{
+    background-color: #bbb;
+    height: 2px;
+    padding-top: 1px;
+}
+.main-heading h2{
+    background-color: #fafafa;
+    font-weight: 600;
+    width: fit-content;
+    margin-top: -22px;
+    padding: 3px 6px;
+}
+.main-heading .heading-icon{
+    /* background-color: #ccc; */
+    text-align: center;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    font-size: 24px;
+    border: 2px solid #151515;
+    margin-bottom: 20px;
+}
+.sub-heading{
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 26px;
+    background-color: #fff;
+    padding: 4px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/*****************************
+======= User Settings =======
+******************************/
+
+#user-setting .card.card-left nav a,
+#user-setting .card ul li a{
+    color: #353535;
+}
+#user-setting .card.card-left nav a.active,
+#user-setting .card ul li a.active,
+#user-setting .card .card-body h5{
+    color: #f3c40e;
+}
+.table-first-col tr > td:first-child{
+    font-weight: 600;
+}
+/* @media(max-width: 991px){
+    #user-setting .card-left .card-body{
+        padding: 10px;
+    }
+    #user-setting .card-left .card-body nav .nav-link{
+        padding: 8px 5px;
+    }
+} */
+
+.social-links{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: center;
+    padding: 0;
+}
+.social-links li{
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    margin: 0 2px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.social-links li a{
+    display: block;
+    font-size: 22px;
+    color: #fff;
+}
+.social-links li:nth-child(1) a{
+    background-color: #3b5998;
+}
+.social-links li:nth-child(2) a{
+    background-color: #55acee;
+}
+.social-links li:nth-child(3) a{
+    background-color: #E4405F;
+}
+.box{
+    background-color: #ccc !important;
+}
+.fixed{
+    position: fixed;
+    /* top: 0; */
+    /* right: 0; */
+}
+.fixed table{
+    width: 100%;
+}
+
+footer{
+    background-color: #151515;
+    padding: 30px 0;
+}
+footer div{
+    color: white;
+    font-size: 22px;
+}

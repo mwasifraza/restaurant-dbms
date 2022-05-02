@@ -1,0 +1,46 @@
+<style>
+.modal-header button.close{
+    text-shadow: none;
+    outline: none;
+    transition: .2s;
+}
+.modal-header button:hover{
+    transform: scale(1.3);
+}
+</style>
+    
+<!-- ORDER -->
+<div class="modal fade" id="modal-order" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title uppercase text-warning" id="ModalLabel">
+            ORDER DETAILS
+        </h5>
+        <button type="button" class="close"
+                data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Size</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="details">                    
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-secondary"data-dismiss="modal">
+                Close
+            </button>
+        </div>
+    </div>
+    </div>
+</div>

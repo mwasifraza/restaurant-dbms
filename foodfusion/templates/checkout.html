@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+    FOOD FUSION | Your Order
+{% endblock %}
+
+{% block content %}
+<style>
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+</style>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto mt-5">
+                <div>
+                    <h4 class="text-warning">ORDER ID: {{ order.order_id }}</h4>
+                </div>
+                <table class="table table-hover table-dark mt-2">
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Size</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in order_det %}
+                        <tr>
+                            <td>{{ row.item_name }}</td>
+                            <td>{{ row.size }}</td>
+                            <td>{{ row.qty }}</td>
+                            <td>{{ row.total_amount }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="mt-4 center">
+                    <h4 class="text-warning">TOTAL AMOUNT: {{ order.total_amount }}</h4>
+                    <h5>Your food will be delivered in 20 minutes!</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

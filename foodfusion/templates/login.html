@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}
+    FOOD FUSION | Login
+{% endblock %}
+
+{% block content %}
+<style>
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+</style>
+<section id="user-login" class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-8 mx-auto login-form mt-5">
+                <h2 class="center">Login</h2>
+                <form method="POST">
+                    {{ loginform.hidden_tag() }}
+                    {{ loginform.username(class='form-control', placeholder='Username', required='required', autocomplete='off') }}
+
+                    {{ loginform.password(class='form-control', placeholder='Password', required='required') }}
+                    
+                    {{ loginform.submit(class='btn btn-primary btn-block') }}
+                </form>
+                <div class="center">
+                    <a href="#" class="text-primary d-block">Forgot Passsword?</a>
+                    <div class="mt-2">
+                        <p>Don't have an account?
+                        <a href="{{ url_for('register_page') }}">Register Here</a>
+                        </p>
+                    </div>
+                    <h5>OR</h5>
+                    <p></p>
+                    <a href="#" class="btn btn-facebook"><i class="fab fa-facebook-square"></i> Login with facebook</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

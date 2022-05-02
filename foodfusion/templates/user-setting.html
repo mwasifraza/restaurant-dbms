@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+
+{% block title %}
+    FOOD FUSION | My Account
+{% endblock %}
+
+{% block content %}
+<style>
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+</style>
+<section id="user-setting">
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-11 mx-auto">
+
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    {% if session.role == 'admin' %}
+                    <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Settings</li>
+                    {% elif session.role == 'user' %}
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Settings</li>
+                    {% endif %}
+                </ol>
+            </nav>
+
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-4 d-md-block">
+                    <div class="card card-left d-md-block d-none">
+                        <div class="card-body">
+                            <nav class="nav">
+                                <a data-toggle="tab" class="nav-link active" href="#overview">
+                                    <i class="fas fa-user mr-1"></i> Profile Overview
+                                </a>
+                                <a data-toggle="tab" class="nav-link" href="#basicinfo">
+                                    <i class="fas fa-user-cog mr-1"></i> Basic Info
+                                </a>
+                                <a data-toggle="tab" class="nav-link" href="#contact">
+                                    <i class="fas fa-envelope mr-1"></i> Contact Details
+                                </a>
+                                {% if session.role != 'admin' %}
+                                <a data-toggle="tab" class="nav-link" href="#residance">
+                                    <i class="fas fa-map-marker-alt mr-1"></i> Residance Details
+                                </a>
+                                {% endif %}
+                                <a data-toggle="tab" class="nav-link" href="#security">
+                                    <i class="fas fa-user-shield mr-1"></i> Security
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-9 col-lg-8 col-md-8">
+                    <div class="card">
+                        <div class="card-header boder-bottom mb-3 d-md-none">
+                            <ul class="nav nav-tabs card-header-tabs nav-fill">
+                                <li class="nav-item">
+                                    <a data-toggle="tab" class="nav-link active" href="#overview">
+                                        <i class="fas fa-user mr-1"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a data-toggle="tab" class="nav-link" href="#basicinfo">
+                                        <i class="fas fa-user-cog mr-1"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a data-toggle="tab" class="nav-link" href="#contact">
+                                        <i class="fas fa-envelope mr-1"></i>
+                                    </a>
+                                </li>
+                                {% if session.role != 'admin' %}
+                                <li class="nav-item">
+                                    <a data-toggle="tab" class="nav-link" href="#residance">
+                                        <i class="fas fa-map-marker-alt mr-1"></i>
+                                    </a>
+                                </li>
+                                {% endif %}
+                                <li class="nav-item">
+                                    <a data-toggle="tab" class="nav-link" href="#security">
+                                        <i class="fas fa-user-shield mr-1"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="card-body tab-content border-0">
+                            <!-- overview -->
+                            <div class="tab-pane active" id="overview">
+                                <h5>PROFILE OVERVIEW</h5>
+                                <hr>
+                                <table class="table table-bordered table-sm table-first-col">
+                                    <tbody>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>{{ user.fname }} {{ user.lname }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Username</td>
+                                            <td>{{ user.username }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td>{{ user.email }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mobile</td>
+                                            <td>{{ user.mobile }}</td>
+                                        </tr>
+                                        {% if session.role != 'admin' %}
+                                        <tr>
+                                            <td>Address</td>
+                                            <td>{{ address.address1 }}, District {{ address.district }}, {{ address.city }}, {{ address.zipcode }}</td>
+                                        </tr>
+                                        {% endif %}
+                                        <!-- {% if address.address2 %}
+                                        <tr>
+                                            <td>Address 02</td>
+                                            <td>{{ address.address2 }}</td>
+                                        </tr>
+                                        {% endif %} -->
+                                        <tr>
+                                            <td>Account Created</td>
+                                            <td>{{ user.created_at }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- basic info -->
+                            <div class="tab-pane" id="basicinfo">
+                                <h5>BASIC INFO</h5>
+                                <hr>
+                                <form method="POST" class="mg-zero">
+                                    {{ basic.hidden_tag() }}
+                                    <div class="form-row justify-content-center">
+                                        <div class="form-group col-md-6">
+                                            {{ basic.fname.label() }}
+                                            {{ basic.fname(class='form-control', autocomplete='off', value=user.fname) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-row justify-content-center">
+                                        <div class="form-group col-md-6">
+                                            {{ basic.lname.label() }}
+                                            {{ basic.lname(class='form-control', autocomplete='off', value=user.lname) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-row justify-content-center">
+                                        <div class="form-group col-md-6">
+                                            {{ basic.username.label() }}
+                                            <div class="input-group mb-2">
+                                                <div class="input-group-prepend">
+                                                  <div class="input-group-text"><i class="fas fa-at"></i></div>
+                                                </div>
+                                                {{ basic.username(class='form-control', value=user.username, autocomplete='off') }}                                              
+                                            </div>
+                                            <small class="form-text text-muted">after changing your username, your old one will become avaliable for anyone to claim</small>
+                                            {{ basic.submit(class='btn btn-warning btn-block mt-3') }}
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- contact -->
+                            <div class="tab-pane" id="contact">
+                                <h5>CONTACT DETAILS</h5>
+                                <hr>
+                                <form action="#" method="POST" class="mg-zero">
+                                    {{ contact.hidden_tag() }}
+                                    <div class="form-row justify-content-center">
+                                        <div class="form-group col-md-6">
+                                            {{ contact.mobile.label() }}
+                                            <div class="input-group mb-2">
+                                                <div class="input-group-prepend">
+                                                  <div class="input-group-text"><strong>+92</strong></div>
+                                                </div>
+                                                {{ contact.mobile(class='form-control', value=user.mobile[3:], autocomplete='off') }}
+                                            </div>
+                                            <small class="form-text text-muted">please enter only valid mobile number, so you can access your account when you forget your password</small>
+                                        </div>
+                                    </div>
+                                    <div class="form-row justify-content-center">
+                                        <div class="form-group col-md-6">
+                                            {{ contact.email.label() }}
+                                            <div class="input-group mb-2">
+                                                <div class="input-group-prepend">
+                                                  <div class="input-group-text"><i class="fas fa-envelope"></i></div>
+                                                </div>
+                                                {{ contact.email(class='form-control', value=user.email, autocomplete='off') }}                                              
+                                            </div>
+                                            <small class="form-text text-muted">please enter only valid email address, otherwise you will not be able to recover your account</small>
+                                            {{ contact.submit(class='btn btn-warning btn-block mt-3') }}
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- residance -->
+                            {% if session.role != 'admin' %}
+                            <div class="tab-pane" id="residance">
+                                <h5>RESIDANCE DETAILS</h5>
+                                <hr>
+                                <form action="{{ url_for('user_settings') }}" method="POST" class="mg-zero">
+                                    {{ residance.hidden_tag() }}
+                                    <div class="form-group">
+                                        {{ residance.address1.label() }}
+                                        {{ residance.address1(class='form-control', value=address.address1, autocomplete='off') }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ residance.address2.label() }}
+                                        {{ residance.address2(class='form-control', value=address.address2, autocomplete='off') }}
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            {{ residance.city.label() }}
+                                            {{ residance.city(class='form-control') }}
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            {{ residance.district.label() }}
+                                            {{ residance.district(class='form-control') }}
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            {{ residance.zipcode.label() }}
+                                            {{ residance.zipcode(class='form-control', value=address.zipcode, autocomplete='off') }}
+                                        </div>
+                                    </div>
+                                    {{ residance.submit(class='btn btn-warning btn-block') }}
+                                </form>
+                            </div>
+                            {% endif %}
+                            <!-- seurity -->
+                            <div class="tab-pane" id="security">
+                                <h5>SECURITY</h5>
+                                <hr>
+                                <form action="#" method="POST" class="mg-zero">
+                                    {{ passwordform.hidden_tag() }}
+                                    <div class="form-row justify-content-center">
+                                        <div class="form-group col-md-8">
+                                            <!-- {{ passwordform.currentpass.label() }} -->
+                                            <div class="input-group mb-2">
+                                                <div class="input-group-prepend">
+                                                  <div class="input-group-text"><i class="fas fa-unlock"></i></div>
+                                                </div>
+                                                {{ passwordform.currentpass(class='form-control', placeholder='Current Password') }}              
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row justify-content-center">
+                                        <div class="form-group col-md-8">
+                                            <!-- {{ passwordform.newpass.label() }} -->
+                                            <div class="input-group mb-2">
+                                                <div class="input-group-prepend">
+                                                  <div class="input-group-text"><i class="fas fa-key"></i></div>
+                                                </div>
+                                                {{ passwordform.newpass(class='form-control', placeholder='New Password') }}               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row justify-content-center">
+                                        <div class="form-group col-md-8">
+                                            <!-- {{ passwordform.confirmpass.label() }} -->
+                                            <div class="input-group mb-2">
+                                                <div class="input-group-prepend">
+                                                  <div class="input-group-text"><i class="fas fa-key"></i></div>
+                                                </div>
+                                                {{ passwordform.confirmpass(class='form-control', placeholder='Confirm New Password') }}
+                                            </div>
+                                            {{ passwordform.submit(class='btn btn-warning btn-block mt-3') }}
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</section>
+{% endblock %}

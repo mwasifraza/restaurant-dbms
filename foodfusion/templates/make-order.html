@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}
+    FOOD FUSION | Make an Order
+{% endblock %}
+
+{% block content %}
+
+{% if 'loggedin' in session %}
+{% include 'include/modal-cart.html' %}
+<div class="cart-button">
+    <a href="#" data-toggle="modal" data-target="#modal-cart"><i class="fas fa-shopping-basket"></i></a>
+    <span class="badge badge-secondary text-white">{{ active_cart_det|length }}</span>
+</div>
+{% endif %}
+
+<section class="mb-5">
+<div class="container">
+        
+    <div class="row">
+        <div>
+            <div class="main-heading mt-5 mb-4">
+                <div class="heading-icon mx-auto"><i class="fas fa-utensils"></i></div>
+                <div class="separator-main-heading"></div>
+                <h2 class="mx-auto">Order</h2>
+            </div>
+            <!-- For Pizza -->
+            <h2 class="sub-heading">Pizza</h2>
+            <div class="row">
+            {% for item in items %}
+                {% if item.item_category == 'Pizza' %}
+                <div class="col-md-4">
+                    <div class="card mx-auto my-2">
+                        <!-- <img class="card-img-top" src="{{ url_for('static', filename='img/2.jpg') }}" alt="Card image cap"> -->
+                        <div class="card-body">
+                        <h5 class="card-title text-warning mb-0">{{ item.item_name }}</h5>
+                        <small class="card-text">Category: {{ item.item_category }}</small><hr>
+                        <p class="card-text mb-2">Rs: <span class="text-warning font-weight-bold" id="price"></span></p>
+                        <form method="POST" class="mg-zero">
+                            <input type="hidden" value="{{ item.item_id }}" name="item-id" id="item-id">
+                            <input type="hidden" value="{{ item.item_name }}" name="item-name" id="item-name">
+                            <select class="form-control" name="size" id="size" required="required">
+                                <option value="">-- Select Size --</option>
+                                {% for row in item_details %}
+                                    {% if row.category == item.item_category %}
+                                    <option value="{{ row.itmdet_id }}">{{ row.size }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                            <button class="btn btn-warning btn-block text-white btn-sm mt-2" name="add-to-cart" id="add-to-cart">
+                                <i class="fas fa-plus"></i>&nbsp;&nbsp;Add to Cart
+                            </button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+
+            <!-- For Fast Food -->
+            <h2 class="sub-heading">Fast Food</h2>
+            <div class="row">
+            {% for item in items %}
+                {% if item.item_category != 'Pizza' and item.item_category != 'Softdrink' %}
+                <div class="col-md-4">
+                    <div class="card mx-auto my-2">
+                        <!-- <img class="card-img-top" src="{{ url_for('static', filename='img/2.jpg') }}" alt="Card image cap"> -->
+                        <div class="card-body">
+                        <h5 class="card-title text-warning mb-0">{{ item.item_name }}</h5>
+                        <small class="card-text">Category: {{ item.item_category }}</small><hr>
+                        <p class="card-text mb-2">Rs: <span class="text-warning font-weight-bold" id="price"></span></p>
+                        <form method="POST" class="mg-zero">
+                            <input type="hidden" value="{{ item.item_id }}" name="item-id" id="item-id">
+                            <input type="hidden" value="{{ item.item_name }}" name="item-name" id="item-name">
+                            <select class="form-control" name="size" id="size" required="required">
+                                <option value="">-- Select Size --</option>
+                                {% for row in item_details %}
+                                    {% if row.category == item.item_category %}
+                                    <option value="{{ row.itmdet_id }}">{{ row.size }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                            <button class="btn btn-warning btn-block text-white btn-sm mt-2" name="add-to-cart" id="add-to-cart">
+                                <i class="fas fa-plus"></i>&nbsp;&nbsp;Add to Cart
+                            </button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+
+            <!-- For Drinks -->
+            <h2 class="sub-heading">Beverages</h2>
+            <div class="row">
+            {% for item in items %}
+                {% if item.item_category == 'Softdrink'  %}
+                <div class="col-md-4">
+                    <div class="card mx-auto my-2">
+                        <!-- <img class="card-img-top" src="{{ url_for('static', filename='img/2.jpg') }}" alt="Card image cap"> -->
+                        <div class="card-body">
+                        <h5 class="card-title text-warning mb-0">{{ item.item_name }}</h5>
+                        <small class="card-text">Category: {{ item.item_category }}</small><hr>
+                        <p class="card-text mb-2">Rs: <span class="text-warning font-weight-bold" id="price"></span></p>
+                        <form method="POST" class="mg-zero">
+                            <input type="hidden" value="{{ item.item_id }}" name="item-id" id="item-id">
+                            <input type="hidden" value="{{ item.item_name }}" name="item-name" id="item-name">
+                            <select class="form-control" name="size" id="size" required="required">
+                                <option value="">-- Select Size --</option>
+                                {% for row in item_details %}
+                                    {% if row.category == item.item_category %}
+                                    <option value="{{ row.itmdet_id }}">{{ row.size }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                            <button class="btn btn-warning btn-block text-white btn-sm mt-2" name="add-to-cart" id="add-to-cart">
+                                <i class="fas fa-plus"></i>&nbsp;&nbsp;Add to Cart
+                            </button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+
+    </div>
+        
+</div>
+</section>
+{% endblock %}

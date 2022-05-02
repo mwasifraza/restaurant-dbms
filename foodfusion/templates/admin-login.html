@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+    FOOD FUSION | Admin Login
+{% endblock %}
+
+{% block content %}
+<style>
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+</style>
+<section class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-8 mx-auto login-form mt-5">
+                <h2 class="center">Admin Login</h2>
+                <form method="POST">
+                    {{ adminlogin.hidden_tag() }}
+                    {{ adminlogin.username(class='form-control', placeholder='Username', required='required', autocomplete='off') }}
+
+                    {{ adminlogin.password(class='form-control', placeholder='Password', required='required') }}
+                    
+                    {{ adminlogin.submit(class='btn btn-warning btn-block') }}
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
