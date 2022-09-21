@@ -105,36 +105,10 @@ def fetch_data():
 @app.route('/admin', methods=['GET','POST'])
 def admin_page():
     adminlogin = LoginForm()
-    if adminlogin.validate_on_submit():
-        attempted_admin = cursor.execute("SELECT * FROM tbluser WHERE username=?",adminlogin.username.data).fetchone()
-        if attempted_admin and bcrypt.check_password_hash(attempted_admin.password_hash, adminlogin.password.data):
-            if attempted_admin.role == 'admin':
-                session['loggedin'] = True
-                session['id'] = attempted_admin.id
-                session['username'] = attempted_admin.username
-                session['role'] = attempted_admin.role
-                flash("You are now logged in as admin", category='success')
-                return redirect(url_for('admin_dashboard'))
-            else:
-                flash('You are not admin', category='danger')
-        else:
-            flash('Username or Password incorrect!', category='danger')
-
     if user_login():
         return redirect(url_for('home'))
     else:
         return render_template('admin-login.html', adminlogin=adminlogin)
-
-@app.route('/admin/dashboard')
-def admin_dashboard():
-    users = cursor.execute("SELECT * FROM tbluser WHERE role='user'").fetchall()
-    if user_login():
-        if session['role'] == 'admin':
-            return render_template('admin-dashboard.html', users=users)
-        else:
-            return redirect(url_for('home'))
-    else:
-        return redirect(url_for('home'))
 
 @app.route('/delete/<int:uid>')
 def delete_user(uid):
